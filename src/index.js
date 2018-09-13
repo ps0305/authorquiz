@@ -4,5 +4,22 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import AuthorQuiz from './AuthorQuiz';
 
-ReactDOM.render(<AuthorQuiz />, document.getElementById('root'));
+const authors = [
+    {
+        name: 'Mark Twain',
+        imageUrl: '../authors/marktwain.jpg',
+        imageSource: 'Wikimedia Commons',
+        books: ['The Adventures of Huckleberry Finn']
+      }
+];
+
+const state = {
+    turnData: {
+        author: authors[0],
+        books: authors[0].books
+    }
+    
+};
+
+ReactDOM.render(<AuthorQuiz {...state}/>, document.getElementById('root'));
 registerServiceWorker();
