@@ -26,6 +26,12 @@ function Turn({author,books}) {
     </div>
   );
 }
+
+function Book({title}) {
+  return (<div className="answer">
+  <h4>{title}</h4>
+  </div>)
+}
 function Continue() {
   return <div />;
 }
@@ -50,7 +56,7 @@ function AuthorQuiz ({turnData}) {
       <div>
         <div className="container-fluid">
           <Hero />
-          <Turn {...turnData}/>
+          <Turn {...turnData}/> 
           <Continue />
           <Footer />
         </div>

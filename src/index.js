@@ -20,6 +20,6 @@ const state = {
     }
     
 };
-
+//authorQuiz receives props => turnData
 ReactDOM.render(<AuthorQuiz {...state}/>, document.getElementById('root'));
 registerServiceWorker();
