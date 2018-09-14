@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types"
 import "./App.css";
 import "./bootstrap.min.css";
+
 
 function Hero() {
   return (
@@ -31,6 +33,18 @@ function Turn({ author, books, highlight,onAnswerSelected }) {
         {books.map((title => <Book title={title} key={title} onClick={onAnswerSelected}/>))}
       </div>
     </div>);
+}
+//propType to Turn function
+Turn.propTypes = {
+  author: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    imageSource: PropTypes.string.isRequired,
+    books: PropTypes.arrayOf(PropTypes.string).isRequired
+  }),
+  books: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onAnswerSelected: PropTypes.func.isRequired,
+  highlight: PropTypes.string.isRequired
 }
 
 function Book({ title, onClick }) {
