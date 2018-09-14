@@ -12,9 +12,18 @@ function Hero() {
     </div>
   );
 }
-function Turn({ author, books }) {
+function Turn({ author, books, highlight }) {
+  //mapping whether user choosed correct or incorrect answer
+  function highlightBgColor(highlight) {
+    const mapping = {
+      'none':'',
+      'correct':'green',
+      'wrong': 'red'
+    }
+    return mapping[highlight];
+  }
   return (
-    <div className="row turn" style={{ backgroundColor: "white" }}>
+    <div className="row turn" style={{ backgroundColor: highlightBgColor(highlight) }}>
       <div className="col-4 offset-1">
         <img src={author.imageUrl} className="authorimage" alt="Author" />
       </div>
@@ -49,12 +58,13 @@ function Footer() {
     </div>
   );
 }
-function AuthorQuiz({ turnData }) {
+//adding highlight props
+function AuthorQuiz({ turnData,highlight }) {
   return (
     <div>
       <div className="container-fluid">
         <Hero />
-        <Turn {...turnData} />
+        <Turn {...turnData} highlight={highlight} />
         <Continue />
         <Footer />
       </div>

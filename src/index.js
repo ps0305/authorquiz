@@ -66,7 +66,8 @@ function getTurnData(authors) {
 }
 const state = {
     //function to call author data
-    turnData: getTurnData(authors)
+    turnData: getTurnData(authors),
+    highlight: 'wrong'
     }
     
 //authorQuiz receives props => turnData
