@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
 import "./bootstrap.min.css";
 
@@ -19,12 +19,9 @@ function Turn({ author, books }) {
         <img src={author.imageUrl} className="authorimage" alt="Author" />
       </div>
       <div className="col-6">
-        {books.map(title => (
-          <Book title={title} key={title} />
-        ))}
+        {books.map((title => <Book title={title} key={title} />))}
       </div>
-    </div>
-  );
+    </div>);
 }
 
 function Book({ title }) {
