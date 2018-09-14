@@ -9,7 +9,9 @@ const authors = [
         name: 'Mark Twain',
         imageUrl: '../authors/marktwain.jpg',
         imageSource: 'Wikimedia Commons',
-        books: ['The Adventures of Huckleberry Finn']
+        books: ['The Adventures of Huckleberry Finn',
+        'Heart of Darkness','Harry Potter and the Sorcerers Stone',
+        'David Copperfield']
       }
 ];
 
