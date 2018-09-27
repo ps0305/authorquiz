@@ -25,7 +25,7 @@ function Turn({ author, books, highlight,onAnswerSelected }) {
     return mapping[highlight];
   }
   return (
-    <div className="row turn container" style={{ backgroundColor: highlightBgColor(highlight) }}>
+    <div className="row turn" style={{ backgroundColor: highlightBgColor(highlight) }}>
       <div className="col-4 offset-1">
         <img src={author.imageUrl} className="authorimage" alt="Author" />
       </div>
