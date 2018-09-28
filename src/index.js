@@ -80,15 +80,21 @@ function onAnswerSelected(answer) {
   //calling render
   render();
 }
+
+
 //but above don't reflect any change on UI,as we are not updating to React
 
 //reder function to update changes to React
 function render() {
   //authorQuiz receives props => turnData
   ReactDOM.render(
-    <AuthorQuiz {...state} onAnswerSelected={onAnswerSelected} />,
-    document.getElementById("root")
-  );
-}
-render();
-registerServiceWorker();
+    <BrowserRouter>
+      <ReactRedux.Provider store={store}>
+        <React.Fragment>
+          <Route exact path="/" component={AuthorQuiz} />
+          <Route path="/add" component={AddAuthorForm} />
+        </React.Fragment>
+      </ReactRedux.Provider>
+    </BrowserRouter>, document.getElementById('root'));
+  
+  registerServiceWorker();
