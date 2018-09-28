@@ -97,4 +97,5 @@ function render() {
       </ReactRedux.Provider>
     </BrowserRouter>, document.getElementById('root'));
   
-  registerServiceWorker();
+  registerServiceWorker()
+};
