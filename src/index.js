@@ -6,7 +6,10 @@ import AuthorQuiz from "./AuthorQuiz";
 //underscore library
 import { shuffle, sample } from "underscore";
 //import from react router library
-import { BrowserRouter ,Route} from 'react-router-dom'
+import { BrowserRouter ,Route} from 'react-router-dom';
+import AddAuthorForm from './AddAuthorForm';
+import * as Redux from 'redux';
+import * as ReactRedux from 'react-redux';
 
 const authors = [
   {
@@ -62,10 +65,35 @@ function getTurnData(authors) {
   return {
     books: fourRandomBooks,
     //to find an author such that the author's books collection contains a books where the tiltle is equal to answer we choose
-    author: authors.find(author => author.books.some(title => title === answer))
+    author: authors.find(author => 
+        author.books.some(title => 
+        title === answer))
   };
 }
-const state = {
+function reducer(
+  state = { authors, turnData: getTurnData(authors), highlight: '' }, 
+  action) {
+    switch (action.type) {
+      case 'ANSWER_SELECTED':
+        const isCorrect = state.turnData.author.books.some((book) => book === action.answer);
+        return Object.assign(
+          {}, 
+          state, { 
+            highlight: isCorrect ? 'correct' : 'wrong'
+          });
+      case 'CONTINUE': 
+          return Object.assign({}, state, { 
+            highlight: '',
+            turnData: getTurnData(state.authors)
+          });
+      case 'ADD_AUTHOR':
+          return Object.assign({}, state, {
+            authors: state.authors.concat([action.author])
+          });
+      default: return state;
+    }
+}
+/*const state = {
   //function to call author data
   turnData: getTurnData(authors),
   highlight: ""
@@ -79,14 +107,19 @@ function onAnswerSelected(answer) {
   state.highlight = isCorrect ? "correct" : "wrong";
   //calling render
   render();
-}
+}}*/
 
 
 //but above don't reflect any change on UI,as we are not updating to React
 
 //reder function to update changes to React
-function render() {
+
   //authorQuiz receives props => turnData
+  let store = Redux.createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
+  
   ReactDOM.render(
     <BrowserRouter>
       <ReactRedux.Provider store={store}>
@@ -97,5 +130,4 @@ function render() {
       </ReactRedux.Provider>
     </BrowserRouter>, document.getElementById('root'));
   
-  registerServiceWorker()
-};
+  registerServiceWorker();
